@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginPage {
 
@@ -19,12 +20,12 @@ public class LoginPage {
         $("[data-test-id=login] input").setValue(authInfo.getLogin());
         $("[data-test-id=password] input").setValue(authInfo.getPassword());
         $("[data-test-id=action-login]").click();
-        SelenideElement errorMessage = $("span[contains(., 'Неверно указан логин или пароль')]");
+        SelenideElement errorMessage = $x("//span[contains(., 'Неверно указан логин или пароль')]");
         errorMessage.shouldBe(Condition.visible);
     }
 
     public void blocksUser() {
-        SelenideElement blockMessage = $("span[contains(., 'Вы 3 раза ввели неверный пароль. Пользователь заблокирован')]");
+        SelenideElement blockMessage = $x("//span[contains(., 'Вы 3 раза ввели неверный пароль. Пользователь заблокирован')]");
         blockMessage.shouldBe(Condition.visible);
     }
 
